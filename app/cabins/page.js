@@ -1,5 +1,12 @@
+import Navigation from '../components/Navigation';
+
 const page = () => {
-  return <h1>Cabins page</h1>;
+  return (
+    <div>
+      <Navigation />
+      <h1>Cabins page</h1>
+    </div>
+  );
 };
 
 export default page;
