@@ -1,3 +1,8 @@
+import Image from 'next/image';
+
+import aboutImage1 from '@/public/about-1.jpg';
+import aboutImage2 from '@/public//about-2.jpg';
+
 export const metadata = {
   title: 'About',
 };
@@ -33,14 +38,14 @@ const page = () => {
       </div>
 
       <div className='col-span-2'>
-        <img
-          src='/about-1.jpg'
+        <Image
           alt='Family sitting around a fire pit in front of cabin'
+          src={aboutImage1}
         />
       </div>
 
       <div className='col-span-2'>
-        <img src='/about-2.jpg' alt='Family that manages The Wild Oasis' />
+        <Image src={aboutImage2} alt='Family that manages The Wild Oasis' />
       </div>
 
       <div className='col-span-3'>
