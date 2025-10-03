@@ -41,6 +41,7 @@ const page = () => {
         <Image
           alt='Family sitting around a fire pit in front of cabin'
           placeholder='blur'
+          quality={80}
           src={aboutImage1}
         />
       </div>
@@ -49,6 +50,7 @@ const page = () => {
         <Image
           alt='Family that manages The Wild Oasis'
           placeholder='blur'
+          quality={80}
           src={aboutImage2}
         />
       </div>
