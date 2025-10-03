@@ -3,7 +3,7 @@ export const metadata = {
 };
 
 const page = () => {
-  return <h1>Your account</h1>;
+  return <h1>Welcome, Alena</h1>;
 };
 
 export default page;
