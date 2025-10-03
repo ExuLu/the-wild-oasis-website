@@ -40,12 +40,17 @@ const page = () => {
       <div className='col-span-2'>
         <Image
           alt='Family sitting around a fire pit in front of cabin'
+          placeholder='blur'
           src={aboutImage1}
         />
       </div>
 
       <div className='col-span-2'>
-        <Image src={aboutImage2} alt='Family that manages The Wild Oasis' />
+        <Image
+          alt='Family that manages The Wild Oasis'
+          placeholder='blur'
+          src={aboutImage2}
+        />
       </div>
 
       <div className='col-span-3'>
