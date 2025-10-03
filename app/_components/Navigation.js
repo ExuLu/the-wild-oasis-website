@@ -2,20 +2,34 @@ import Link from 'next/link';
 
 const Navigation = () => {
   return (
-    <ul>
-      <li>
-        <Link href='/'>Home</Link>
-      </li>
-      <li>
-        <Link href='/cabins'>Explore luxury cabins</Link>
-      </li>
-      <li>
-        <Link href='/about'>About</Link>
-      </li>
-      <li>
-        <Link href='/account'>Your account</Link>
-      </li>
-    </ul>
+    <nav className='z-10 text-xl'>
+      <ul className='flex gap-16 items-center'>
+        <li>
+          <Link
+            className='hover:text-accent-400 transition-colors'
+            href='/cabins'
+          >
+            Cabins
+          </Link>
+        </li>
+        <li>
+          <Link
+            className='hover:text-accent-400 transition-colors'
+            href='/about'
+          >
+            About
+          </Link>
+        </li>
+        <li>
+          <Link
+            className='hover:text-accent-400 transition-colors'
+            href='/account'
+          >
+            Guest area
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
