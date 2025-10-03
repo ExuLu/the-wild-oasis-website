@@ -1,7 +1,6 @@
-import Image from 'next/image';
-
 import aboutImage1 from '@/public/about-1.jpg';
 import aboutImage2 from '@/public//about-2.jpg';
+import AboutImage from '../_components/AboutImage';
 
 export const metadata = {
   title: 'About',
@@ -37,23 +36,15 @@ const page = () => {
         </div>
       </div>
 
-      <div className='col-span-2'>
-        <Image
-          alt='Family sitting around a fire pit in front of cabin'
-          placeholder='blur'
-          quality={80}
-          src={aboutImage1}
-        />
-      </div>
+      <AboutImage
+        altText='Family sitting around a fire pit in front of cabin'
+        src={aboutImage1}
+      />
 
-      <div className='col-span-2'>
-        <Image
-          alt='Family that manages The Wild Oasis'
-          placeholder='blur'
-          quality={80}
-          src={aboutImage2}
-        />
-      </div>
+      <AboutImage
+        altText='Family that manages The Wild Oasis'
+        src={aboutImage2}
+      />
 
       <div className='col-span-3'>
         <h1 className='text-4xl mb-10 text-accent-400 font-medium'>
