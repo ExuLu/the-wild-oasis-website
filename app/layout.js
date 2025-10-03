@@ -1,5 +1,4 @@
-import Logo from '@/app/_components/Logo';
-import Navigation from '@/app/_components/Navigation';
+import Header from '@/app/_components/Header';
 
 import { Josefin_Sans } from 'next/font/google';
 
@@ -23,10 +22,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${josefin.className} bg-primary-950 text-primary-100 min-h-screen`}
       >
-        <header>
-          <Logo />
-          <Navigation />
-        </header>
+        <Header />
         <main>{children}</main>
         <footer>Copyright by The Wild Oasis</footer>
       </body>
