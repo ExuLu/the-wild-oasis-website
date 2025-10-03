@@ -1,5 +1,3 @@
-import Counter from '../components/Counter';
-
 const page = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
   const data = await res.json();
@@ -7,7 +5,6 @@ const page = async () => {
   return (
     <div>
       <h1>Cabins page</h1>
-      <Counter users={data} />
 
       <ul>
         {data.map((user) => (
