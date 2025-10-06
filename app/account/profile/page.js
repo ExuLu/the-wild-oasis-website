@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Update profile',
 };
 
-const page = () => {
+const Page = () => {
   // CHANGE
   const countryFlag = 'pt.jpg';
   const nationality = 'portugal';
@@ -73,4 +73,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
