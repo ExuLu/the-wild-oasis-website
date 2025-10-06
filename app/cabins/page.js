@@ -1,14 +1,10 @@
-import CabinCard from '@/app/_components/CabinCard';
-import { getCabins } from '../_lib/data-service';
-import CabinList from '../_components/CabinList';
+import CabinList from '@/app/_components/CabinList';
 
 export const metadata = {
   title: 'Cabins',
 };
 
-const page = async () => {
-  const cabins = await getCabins();
-
+const page = () => {
   return (
     <div>
       <h1 className='text-4xl mb-5 text-accent-400 font-medium'>
@@ -23,7 +19,7 @@ const page = async () => {
         Welcome to paradise.
       </p>
 
-      {cabins.length > 0 && <CabinList />}
+      <CabinList />
     </div>
   );
 };
