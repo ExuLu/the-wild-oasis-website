@@ -1,5 +1,7 @@
-import { getCabin } from '@/app/_lib/data-service';
+import Image from 'next/image';
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
+
+import { getCabin } from '@/app/_lib/data-service';
 
 const Page = async ({ params }) => {
   const { cabinId } = await params;
@@ -12,7 +14,12 @@ const Page = async ({ params }) => {
     <div className='max-w-6xl mx-auto mt-8'>
       <div className='grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24'>
         <div className='relative scale-[1.15] -translate-x-3'>
-          <img src={image} alt={`Cabin ${name}`} />
+          <Image
+            alt={`Cabin ${name}`}
+            className='object-cover'
+            fill
+            src={image}
+          />
         </div>
 
         <div>
