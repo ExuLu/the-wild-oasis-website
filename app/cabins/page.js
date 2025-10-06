@@ -1,4 +1,6 @@
 import CabinList from '@/app/_components/CabinList';
+import { Suspense } from 'react';
+import Spinner from '../_components/Spinner';
 
 export const metadata = {
   title: 'Cabins',
@@ -19,7 +21,9 @@ const page = () => {
         Welcome to paradise.
       </p>
 
-      <CabinList />
+      <Suspense fallback={<Spinner />}>
+        <CabinList />
+      </Suspense>
     </div>
   );
 };
