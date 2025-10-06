@@ -7,8 +7,8 @@ const NotFound = () => {
         This page could not be found :(
       </h1>
       <Link
-        href='/'
         className='inline-block bg-accent-500 text-primary-800 px-6 py-3 text-lg'
+        href='/'
       >
         Go back home
       </Link>
