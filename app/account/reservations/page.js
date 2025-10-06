@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Reservations',
 };
 
-const page = () => {
+const Page = () => {
   // CHANGE
   const bookings = [];
 
@@ -32,4 +32,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
