@@ -1,9 +1,8 @@
 import { Suspense } from 'react';
 
 import CabinList from '@/app/_components/CabinList';
+import Filter from '@/app/_components/Filter';
 import Spinner from '@/app/_components/Spinner';
-
-export const revalidate = 3600;
 
 export const metadata = {
   title: 'Cabins',
@@ -25,6 +24,8 @@ const Page = ({ searchParams }) => {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+
+      <Filter />
 
       <Suspense fallback={<Spinner />}>
         <CabinList filter={filter} />
