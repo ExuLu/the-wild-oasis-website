@@ -1,16 +1,13 @@
+import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
 
+import Reservation from '@/app/_components/Reservation';
 import TextExpander from '@/app/_components/TextExpander';
 
-import {
-  getBookedDatesByCabinId,
-  getCabin,
-  getCabins,
-  getSettings,
-} from '@/app/_lib/data-service';
-import Reservation from '@/app/_components/Reservation';
+import { getCabin, getCabins } from '@/app/_lib/data-service';
+import { Suspense } from 'react';
+import Spinner from '@/app/_components/Spinner';
 
 export const generateMetadata = async ({ params }) => {
   const { cabinId } = await params;
@@ -85,7 +82,9 @@ const Page = async ({ params }) => {
           Reserve {name} today. Pay on arrival.
         </h2>
 
-        <Reservation cabinId={cabinId} />
+        <Suspense fallback={<Spinner />}>
+          <Reservation cabin={cabin} />
+        </Suspense>
       </div>
     </div>
   );
