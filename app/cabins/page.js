@@ -25,7 +25,9 @@ const Page = ({ searchParams }) => {
         Welcome to paradise.
       </p>
 
-      <Filter />
+      <div className='flex justify-end mb-8'>
+        <Filter />
+      </div>
 
       <Suspense fallback={<Spinner />}>
         <CabinList filter={filter} />
