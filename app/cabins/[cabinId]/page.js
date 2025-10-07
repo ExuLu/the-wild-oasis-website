@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
 
 import { getCabin, getCabins } from '@/app/_lib/data-service';
+import TextExpander from '@/app/_components/TextExpander';
 
 export const generateMetadata = async ({ params }) => {
   const { cabinId } = await params;
@@ -43,7 +44,9 @@ const Page = async ({ params }) => {
             Cabin {name}
           </h3>
 
-          <p className='text-lg text-primary-300 mb-10'>{description}</p>
+          <p className='text-lg text-primary-300 mb-10'>
+            <TextExpander>{description}</TextExpander>
+          </p>
 
           <ul className='flex flex-col gap-4 mb-7'>
             <li className='flex gap-3 items-center'>
