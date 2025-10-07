@@ -2,7 +2,7 @@ import CabinCard from './CabinCard';
 
 import { getCabins } from '../_lib/data-service';
 
-const CabinList = async () => {
+const CabinList = async ({ filter }) => {
   const cabins = await getCabins();
 
   if (!cabins.length) return null;
