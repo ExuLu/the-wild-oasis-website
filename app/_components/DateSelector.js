@@ -14,15 +14,15 @@ const isAlreadyBooked = (range, datesArr) => {
   );
 };
 
-const DateSelector = () => {
-  const regularPrice = 23;
-  const discount = 23;
+const DateSelector = ({ cabin, bookedDates, settings }) => {
+  console.log(cabin, bookedDates, settings);
+  const regularPrice = cabin.regularPrice;
+  const discount = cabin.discount;
   const numNights = 23;
   const cabinPrice = 23;
   const range = { from: null, to: null };
 
-  const minBookingLength = 1;
-  const maxBookingLength = 23;
+  const { minBookingLength, maxBookingLength } = settings;
 
   return (
     <div className='flex flex-col justify-between'>

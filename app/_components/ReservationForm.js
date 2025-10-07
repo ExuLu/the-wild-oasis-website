@@ -1,5 +1,5 @@
-const ReservationForm = () => {
-  const maxCapacity = 23;
+const ReservationForm = ({ cabin }) => {
+  const { maxCapacity } = cabin;
 
   return (
     <div className='scale-[1.01]'>
