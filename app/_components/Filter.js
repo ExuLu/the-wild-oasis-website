@@ -1,9 +1,11 @@
 'use client';
 
 import useSetSearchParams from '@/app/_hooks/useSetSearchParams';
+import { useSearchParams } from 'next/navigation';
 
 const Filter = () => {
-  const { handleFilter } = useSetSearchParams('capacity');
+  const { currentFilterValue, handleFilter } = useSetSearchParams('capacity');
+  const activeFilter = currentFilterValue ?? 'all';
 
   return (
     <div className='border border-primary-800 flex'>

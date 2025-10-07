@@ -5,13 +5,15 @@ const useSetSearchParams = (filterName) => {
   const router = useRouter();
   const pathname = usePathname();
 
+  const currentFilterValue = searchParams.get(filterName);
+
   const handleFilter = (filter) => {
     const params = new URLSearchParams(searchParams);
     params.set(filterName, filter);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  return { handleFilter };
+  return { currentFilterValue, handleFilter };
 };
 
 export default useSetSearchParams;
