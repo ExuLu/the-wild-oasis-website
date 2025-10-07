@@ -6,7 +6,6 @@ export const metadata = {
 };
 
 const Page = () => {
-  // CHANGE
   const countryFlag = 'pt.jpg';
   const nationality = 'portugal';
 
@@ -21,7 +20,14 @@ const Page = () => {
         faster and smoother. See you soon!
       </p>
 
-      <UpdateProfileForm countryFlag={countryFlag} nationality={nationality} />
+      <UpdateProfileForm countryFlag={countryFlag}>
+        <SelectCountry
+          name='nationality'
+          id='nationality'
+          className='px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm'
+          defaultCountry={nationality}
+        />
+      </UpdateProfileForm>
     </div>
   );
 };

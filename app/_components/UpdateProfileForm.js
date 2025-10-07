@@ -1,6 +1,10 @@
-import SelectCountry from './SelectCountry';
+'use client';
 
-const UpdateProfileForm = ({ countryFlag, nationality }) => {
+import { useState } from 'react';
+
+const UpdateProfileForm = ({ children, countryFlag }) => {
+  const [count, setCount] = useState(0);
+
   return (
     <form className='bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col'>
       <div className='space-y-2'>
@@ -29,12 +33,7 @@ const UpdateProfileForm = ({ countryFlag, nationality }) => {
           />
         </div>
 
-        <SelectCountry
-          name='nationality'
-          id='nationality'
-          className='px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm'
-          defaultCountry={nationality}
-        />
+        {children}
       </div>
 
       <div className='space-y-2'>
