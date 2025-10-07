@@ -1,18 +1,9 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import useSetSearchParams from '@/app/_hooks/useSetSearchParams';
 
 const Filter = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleFilter = (filter) => {
-    const params = new URLSearchParams(searchParams);
-    console.log(params);
-    params.set('capacity', filter);
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false  });
-  };
+  const { handleFilter } = useSetSearchParams('capacity');
 
   return (
     <div className='border border-primary-800 flex'>
