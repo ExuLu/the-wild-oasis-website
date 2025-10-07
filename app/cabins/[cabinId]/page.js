@@ -2,11 +2,15 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
 
-import DateSelector from '@/app/_components/DateSelector';
-import ReservationForm from '@/app/_components/ReservationForm';
 import TextExpander from '@/app/_components/TextExpander';
 
-import { getCabin, getCabins } from '@/app/_lib/data-service';
+import {
+  getBookedDatesByCabinId,
+  getCabin,
+  getCabins,
+  getSettings,
+} from '@/app/_lib/data-service';
+import Reservation from '@/app/_components/Reservation';
 
 export const generateMetadata = async ({ params }) => {
   const { cabinId } = await params;
@@ -81,10 +85,7 @@ const Page = async ({ params }) => {
           Reserve {name} today. Pay on arrival.
         </h2>
 
-        <div className='grid grid-cols-2 border border-primary-800 min-h-[400px]'>
-          <DateSelector />
-          <ReservationForm />
-        </div>
+        <Reservation cabinId={cabinId} />
       </div>
     </div>
   );
