@@ -1,3 +1,5 @@
+'use client';
+
 const ReservationForm = ({ cabin }) => {
   const { maxCapacity } = cabin;
 
