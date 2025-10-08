@@ -3,6 +3,7 @@
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import { isWithinInterval } from 'date-fns';
+import { useReservation } from './ReservationContext';
 
 const isAlreadyBooked = (range, datesArr) => {
   return (
@@ -15,27 +16,29 @@ const isAlreadyBooked = (range, datesArr) => {
 };
 
 const DateSelector = ({ cabin, bookedDates, settings }) => {
-  console.log(cabin, bookedDates, settings);
+  const { range, setRange, resetRange } = useReservation();
+
   const regularPrice = cabin.regularPrice;
   const discount = cabin.discount;
   const numNights = 23;
   const cabinPrice = 23;
-  const range = { from: null, to: null };
 
   const { minBookingLength, maxBookingLength } = settings;
 
   return (
     <div className='flex flex-col justify-between'>
       <DayPicker
-        className='pt-12 place-self-center'
-        mode='range'
-        min={minBookingLength + 1}
-        max={maxBookingLength}
-        fromMonth={new Date()}
-        fromDate={new Date()}
-        toYear={new Date().getFullYear() + 5}
         captionLayout='dropdown'
+        className='pt-12 place-self-center'
+        fromDate={new Date()}
+        fromMonth={new Date()}
+        max={maxBookingLength}
+        min={minBookingLength + 1}
+        mode='range'
         numberOfMonths={2}
+        onSelect={setRange}
+        selected={range}
+        toYear={new Date().getFullYear() + 5}
       />
 
       <div className='flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]'>
