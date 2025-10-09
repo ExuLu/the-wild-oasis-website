@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { auth } from '@/app/_lib/auth';
-import Image from 'next/image';
 
 const Navigation = async () => {
   const session = await auth();
@@ -37,6 +37,7 @@ const Navigation = async () => {
                   alt={session.user.name}
                   className='object-cover rounded-full'
                   fill
+                  referrerPolicy='no-referrer'
                   src={session?.user?.image}
                 />
               </div>
