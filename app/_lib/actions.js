@@ -9,6 +9,10 @@ export const updateGuest = async (formData) => {
 
   const nationalID = formData.get('nationalID');
   const nationalityData = formData.get('nationality').split('%');
+
+  if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID)) {
+    throw new Error('Please, provide valid national ID');
+  }
 };
 
 export const signInAction = async () => {
