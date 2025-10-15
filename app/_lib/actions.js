@@ -20,15 +20,11 @@ export const updateGuest = async (formData) => {
   const { data, error } = await supabase
     .from('guests')
     .update(updatedData)
-    .eq('id', session.user.guestId)
-    .select()
-    .single();
+    .eq('id', session.user.guestId);
 
   if (error) {
-    console.error(error);
     throw new Error('Guest could not be updated');
   }
-  return data;
 };
 
 export const signInAction = async () => {
