@@ -7,10 +7,10 @@ async function SelectCountry({ defaultCountry, name, id, className }) {
 
   return (
     <select
-      name={name}
-      id={id}
-      defaultValue={`${defaultCountry}%${flag}`}
       className={className}
+      defaultValue={`${defaultCountry}%${flag}`}
+      id={id}
+      name={name}
     >
       <option value=''>Select country...</option>
       {countries.map((c) => (
