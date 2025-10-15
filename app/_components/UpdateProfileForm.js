@@ -1,7 +1,10 @@
 'use client';
 
-import { updateGuest } from '@/app/_lib/actions';
+import Image from 'next/image';
+
 import UpdateProfileButton from './UpdateProfileButton';
+
+import { updateGuest } from '@/app/_lib/actions';
 
 const UpdateProfileForm = ({ children, guest }) => {
   const { fullName, email, nationality, nationalID, countryFlag } = guest;
@@ -34,11 +37,14 @@ const UpdateProfileForm = ({ children, guest }) => {
       <div className='space-y-2'>
         <div className='flex items-center justify-between'>
           <label htmlFor='nationality'>Where are you from?</label>
-          <img
-            alt='Country flag'
-            className='h-5 rounded-sm'
-            src={countryFlag}
-          />
+          <div className='h-5 w-[30px] relative'>
+            <Image
+              alt='Country flag'
+              className='h-5 rounded-sm'
+              fill
+              src={countryFlag}
+            />
+          </div>
         </div>
 
         {children}
