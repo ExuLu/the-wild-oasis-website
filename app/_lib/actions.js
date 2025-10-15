@@ -1,6 +1,7 @@
 'use server';
 
 import { auth, signIn, signOut } from './auth';
+import { supabase } from './supabase';
 
 export const updateGuest = async (formData) => {
   const session = await auth();
@@ -8,11 +9,26 @@ export const updateGuest = async (formData) => {
   if (!session) throw Error('You must be logged in');
 
   const nationalID = formData.get('nationalID');
-  const nationalityData = formData.get('nationality').split('%');
+  const [nationality, countryFlag] = formData.get('nationality').split('%');
 
   if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID)) {
     throw new Error('Please, provide valid national ID');
   }
+
+  const updatedData = { nationality, countryFlag, nationalID };
+
+  const { data, error } = await supabase
+    .from('guests')
+    .update(updatedData)
+    .eq('id', session.user.guestId)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error('Guest could not be updated');
+  }
+  return data;
 };
 
 export const signInAction = async () => {
