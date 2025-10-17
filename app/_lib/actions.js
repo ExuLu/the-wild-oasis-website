@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { auth, signIn, signOut } from './auth';
 import { supabase } from './supabase';
+import { getBookings } from './data-service';
 
 export const updateGuest = async (formData) => {
   const session = await auth();
@@ -18,7 +19,7 @@ export const updateGuest = async (formData) => {
 
   const updatedData = { nationality, countryFlag, nationalID };
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('guests')
     .update(updatedData)
     .eq('id', session.user.guestId);
@@ -36,4 +37,30 @@ export const signInAction = async () => {
 
 export const signOutAction = async () => {
   await signOut({ redirectTo: '/' });
+};
+
+export const deleteReservation = async (bookingId) => {
+  const session = await auth();
+
+  if (!session) throw Error('You must be logged in');
+
+  const { error } = await supabase
+    .from('bookings')
+    .delete()
+    .eq('id', bookingId);
+
+  const guestBookings = await getBookings(session.user.guestId);
+  const hasCurrentBooking = guestBookings.some(
+    (booking) => booking.id === bookingId
+  );
+
+  if (!hasCurrentBooking) {
+    throw new Error('You are not allowed to delete this booking!');
+  }
+
+  if (error) {
+    throw new Error('Booking could not be deleted');
+  }
+
+  revalidatePath('/account/reservations');
 };
