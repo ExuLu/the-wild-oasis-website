@@ -51,4 +51,6 @@ export const deleteReservation = async (bookingId) => {
   if (error) {
     throw new Error('Booking could not be deleted');
   }
+
+  revalidatePath('/account/reservation');
 };
