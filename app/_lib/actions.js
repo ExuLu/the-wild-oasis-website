@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { auth, signIn, signOut } from './auth';
 import { supabase } from './supabase';
+import { getBookings } from './data-service';
 
 export const updateGuest = async (formData) => {
   const session = await auth();
@@ -48,9 +49,18 @@ export const deleteReservation = async (bookingId) => {
     .delete()
     .eq('id', bookingId);
 
+  const guestBookings = await getBookings(session.user.guestId);
+  const hasCurrentBooking = guestBookings.some(
+    (booking) => booking.id === bookingId
+  );
+
+  if (!hasCurrentBooking) {
+    throw new Error('You are not allowed to delete this booking!');
+  }
+
   if (error) {
     throw new Error('Booking could not be deleted');
   }
 
-  revalidatePath('/account/reservation');
+  revalidatePath('/account/reservations');
 };
