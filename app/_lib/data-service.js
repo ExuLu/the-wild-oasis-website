@@ -35,6 +35,20 @@ export async function getCabinPrice(id) {
   return data;
 }
 
+export async function getCabinMaxCapacity(id) {
+  const { data, error } = await supabase
+    .from('cabins')
+    .select('maxCapacity')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    console.error(error);
+  }
+
+  return data;
+}
+
 export const getCabins = async function () {
   const { data, error } = await supabase
     .from('cabins')
@@ -174,23 +188,5 @@ export async function createBooking(newBooking) {
     throw new Error('Booking could not be created');
   }
 
-  return data;
-}
-
-/////////////
-// UPDATE
-
-export async function updateBooking(id, updatedFields) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .update(updatedFields)
-    .eq('id', id)
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error('Booking could not be updated');
-  }
   return data;
 }

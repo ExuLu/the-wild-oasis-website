@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import UpdateProfileButton from './UpdateProfileButton';
+import SubmitButton from './SubmitButton';
 
 import { updateGuest } from '@/app/_lib/actions';
 
@@ -60,7 +60,7 @@ const UpdateProfileForm = ({ children, guest }) => {
       </div>
 
       <div className='flex justify-end items-center gap-6'>
-        <UpdateProfileButton />
+        <SubmitButton pendingLabel='Updating...'>Update profile</SubmitButton>
       </div>
     </form>
   );
