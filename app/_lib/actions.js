@@ -97,5 +97,8 @@ export const updateReservation = async (formData) => {
     throw new Error('Booking could not be updated');
   }
 
+  revalidatePath('account/reservations');
+  revalidatePath(`account/reservations/edit/${bookingId}`);
+
   redirect('/account/reservations');
 };
