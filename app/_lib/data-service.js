@@ -35,6 +35,20 @@ export async function getCabinPrice(id) {
   return data;
 }
 
+export async function getCabinMaxCapacity(id) {
+  const { data, error } = await supabase
+    .from('cabins')
+    .select('maxCapacity')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    console.error(error);
+  }
+
+  return data;
+}
+
 export const getCabins = async function () {
   const { data, error } = await supabase
     .from('cabins')

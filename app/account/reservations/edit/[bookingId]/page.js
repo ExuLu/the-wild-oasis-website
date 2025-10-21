@@ -1,12 +1,14 @@
-export const Page = () => {
-  // CHANGE
-  const reservationId = 23;
-  const maxCapacity = 23;
+import { getBooking, getCabinMaxCapacity } from '@/app/_lib/data-service';
+
+const Page = async ({ params }) => {
+  const { bookingId } = params;
+  const currentBooking = await getBooking(bookingId);
+  const { maxCapacity } = await getCabinMaxCapacity(currentBooking.cabinID);
 
   return (
     <div>
       <h2 className='font-semibold text-2xl text-accent-400 mb-7'>
-        Edit Reservation #{reservationId}
+        Edit Reservation #{bookingId}
       </h2>
 
       <form className='bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col'>
@@ -48,3 +50,5 @@ export const Page = () => {
     </div>
   );
 };
+
+export default Page;
