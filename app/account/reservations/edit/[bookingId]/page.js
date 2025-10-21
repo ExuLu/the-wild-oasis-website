@@ -1,9 +1,10 @@
+import { updateReservation } from '@/app/_lib/actions';
 import { getBooking, getCabinMaxCapacity } from '@/app/_lib/data-service';
 
 const Page = async ({ params }) => {
   const { bookingId } = params;
-  const currentBooking = await getBooking(bookingId);
-  const { maxCapacity } = await getCabinMaxCapacity(currentBooking.cabinID);
+  const { numGuests, observations, cabinID } = await getBooking(bookingId);
+  const { maxCapacity } = await getCabinMaxCapacity(cabinID);
 
   return (
     <div>
@@ -11,13 +12,18 @@ const Page = async ({ params }) => {
         Edit Reservation #{bookingId}
       </h2>
 
-      <form className='bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col'>
+      <form
+        action={updateReservation}
+        className='bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col'
+      >
+        <input defaultValue={bookingId} name='bookingId' type='hidden' />
         <div className='space-y-2'>
           <label htmlFor='numGuests'>How many guests?</label>
           <select
-            name='numGuests'
-            id='numGuests'
             className='px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm'
+            defaultValue={numGuests}
+            id='numGuests'
+            name='numGuests'
             required
           >
             <option value='' key=''>
@@ -36,8 +42,9 @@ const Page = async ({ params }) => {
             Anything we should know about your stay?
           </label>
           <textarea
-            name='observations'
             className='px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm'
+            defaultValue={observations}
+            name='observations'
           />
         </div>
 
