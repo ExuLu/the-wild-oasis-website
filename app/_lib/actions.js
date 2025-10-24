@@ -90,6 +90,7 @@ export const createReservation = async (bookingData, formData) => {
   }
 
   revalidatePath(`/cabins/${bookingData.cabinId}`);
+  redirect('/cabins/thankyou');
 };
 
 export const updateReservation = async (formData) => {
