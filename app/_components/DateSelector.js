@@ -23,9 +23,11 @@ const isAlreadyBooked = (range, datesArr) => {
 const DateSelector = ({ cabin, bookedDates, settings }) => {
   const { range, setRange, resetRange } = useReservation();
 
+  const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
+
   const { regularPrice, discount } = cabin;
   const { minBookingLength, maxBookingLength } = settings;
-  const numNights = differenceInDays(range.to, range.from);
+  const numNights = differenceInDays(displayRange.to, displayRange.from);
   const cabinPrice = numNights * (regularPrice - discount);
 
   return (
@@ -44,7 +46,7 @@ const DateSelector = ({ cabin, bookedDates, settings }) => {
         mode='range'
         numberOfMonths={2}
         onSelect={setRange}
-        selected={range}
+        selected={displayRange}
         toYear={new Date().getFullYear() + 5}
       />
 
