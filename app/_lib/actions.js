@@ -45,11 +45,6 @@ export const deleteReservation = async (bookingId) => {
 
   if (!session) throw Error('You must be logged in');
 
-  const { error } = await supabase
-    .from('bookings')
-    .delete()
-    .eq('id', bookingId);
-
   const guestBookings = await getBookings(session.user.guestId);
   const hasCurrentBooking = guestBookings.some(
     (booking) => booking.id === bookingId
@@ -58,6 +53,11 @@ export const deleteReservation = async (bookingId) => {
   if (!hasCurrentBooking) {
     throw new Error('You are not allowed to delete this booking!');
   }
+
+  const { error } = await supabase
+    .from('bookings')
+    .delete()
+    .eq('id', bookingId);
 
   if (error) {
     throw new Error('Booking could not be deleted');
