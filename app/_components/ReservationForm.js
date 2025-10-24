@@ -3,11 +3,16 @@
 import Image from 'next/image';
 
 import { useReservation } from './ReservationContext';
+import { differenceInDays } from 'date-fns';
 
 const ReservationForm = ({ cabin, user }) => {
   const { range } = useReservation();
 
-  const { maxCapacity } = cabin;
+  const { maxCapacity, regularPrice, discount } = cabin;
+  const { from: startDate, to: endDate } = range;
+  
+  const numNights = differenceInDays(endDate, startDate);
+  const cabinPrice = numNights * (regularPrice - discount);
 
   return (
     <div className='scale-[1.01]'>
