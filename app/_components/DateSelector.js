@@ -2,7 +2,7 @@
 
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { isWithinInterval } from 'date-fns';
+import { differenceInDays, isWithinInterval } from 'date-fns';
 import { useReservation } from './ReservationContext';
 
 const isAlreadyBooked = (range, datesArr) => {
@@ -18,12 +18,10 @@ const isAlreadyBooked = (range, datesArr) => {
 const DateSelector = ({ cabin, bookedDates, settings }) => {
   const { range, setRange, resetRange } = useReservation();
 
-  const regularPrice = cabin.regularPrice;
-  const discount = cabin.discount;
-  const numNights = 23;
-  const cabinPrice = 23;
-
+  const { regularPrice, discount } = cabin;
   const { minBookingLength, maxBookingLength } = settings;
+  const numNights = differenceInDays(range.to, range.from);
+  const cabinPrice = numNights * (regularPrice - discount);
 
   return (
     <div className='flex flex-col justify-between'>
