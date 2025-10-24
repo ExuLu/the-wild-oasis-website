@@ -2,7 +2,12 @@
 
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { isWithinInterval } from 'date-fns';
+import {
+  differenceInDays,
+  isPast,
+  isSameDay,
+  isWithinInterval,
+} from 'date-fns';
 import { useReservation } from './ReservationContext';
 
 const isAlreadyBooked = (range, datesArr) => {
@@ -18,18 +23,22 @@ const isAlreadyBooked = (range, datesArr) => {
 const DateSelector = ({ cabin, bookedDates, settings }) => {
   const { range, setRange, resetRange } = useReservation();
 
-  const regularPrice = cabin.regularPrice;
-  const discount = cabin.discount;
-  const numNights = 23;
-  const cabinPrice = 23;
+  const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
 
+  const { regularPrice, discount } = cabin;
   const { minBookingLength, maxBookingLength } = settings;
+  const numNights = differenceInDays(displayRange.to, displayRange.from);
+  const cabinPrice = numNights * (regularPrice - discount);
 
   return (
     <div className='flex flex-col justify-between'>
       <DayPicker
         captionLayout='dropdown'
         className='pt-12 place-self-center'
+        disabled={(curDate) =>
+          isPast(curDate) ||
+          bookedDates.some((date) => isSameDay(date, curDate))
+        }
         fromDate={new Date()}
         fromMonth={new Date()}
         max={maxBookingLength}
@@ -37,7 +46,7 @@ const DateSelector = ({ cabin, bookedDates, settings }) => {
         mode='range'
         numberOfMonths={2}
         onSelect={setRange}
-        selected={range}
+        selected={displayRange}
         toYear={new Date().getFullYear() + 5}
       />
 
