@@ -66,6 +66,12 @@ export const deleteReservation = async (bookingId) => {
   revalidatePath('/account/reservations');
 };
 
+export const createReservation = async (formData) => {
+  const session = await auth();
+  console.log(formData);
+  if (!session) throw Error('You must be logged in');
+};
+
 export const updateReservation = async (formData) => {
   const session = await auth();
 
