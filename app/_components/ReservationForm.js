@@ -9,11 +9,21 @@ import { createReservation } from '@/app/_lib/actions';
 const ReservationForm = ({ cabin, user }) => {
   const { range } = useReservation();
 
-  const { maxCapacity, regularPrice, discount } = cabin;
+  const { maxCapacity, regularPrice, discount, id } = cabin;
   const { from: startDate, to: endDate } = range;
 
   const numNights = differenceInDays(endDate, startDate);
   const cabinPrice = numNights * (regularPrice - discount);
+
+  const bookingData = {
+    startDate,
+    endDate,
+    numNights,
+    cabinPrice,
+    cabinID: id,
+  };
+
+  const createBookingWithData = createReservation.bind(null, bookingData);
 
   return (
     <div className='scale-[1.01]'>
@@ -35,7 +45,7 @@ const ReservationForm = ({ cabin, user }) => {
       </div>
 
       <form
-        action={createReservation}
+        action={createBookingWithData}
         className='bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col'
       >
         <div className='space-y-2'>
