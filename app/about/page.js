@@ -1,7 +1,7 @@
 import aboutImage1 from '@/public/about-1.jpg';
 import aboutImage2 from '@/public//about-2.jpg';
-import AboutImage from '../_components/AboutImage';
-import { getCabins } from '../_lib/data-service';
+import AboutImage from '@/app/_components/AboutImage';
+import { getCabins } from '@/app/_lib/data-service';
 
 export const revalidation = 3600;
 

@@ -1,7 +1,6 @@
 'use client';
 
 import useSetSearchParams from '@/app/_hooks/useSetSearchParams';
-import { useSearchParams } from 'next/navigation';
 import FilterButton from './FilterButton';
 
 const Filter = () => {
